@@ -18,8 +18,9 @@ class MyService: Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         log("onStartCommand")
+        val startNumber = intent?.getIntExtra(START, 0) ?: 0
         coroutineScope.launch {
-            for  (i in 0 until 100) {
+            for  (i in startNumber until startNumber + 100) {
                 delay(1000)
                 log("Timer $i")
             }
@@ -42,6 +43,10 @@ class MyService: Service() {
     }
 
     companion object {
-        fun newIntent(context: Context) = Intent(context, MyService::class.java)
+        private const val START = "start"
+
+        fun newIntent(context: Context, startNumber: Int) = Intent(context, MyService::class.java).apply {
+            putExtra(START, startNumber)
+        }
     }
 }
