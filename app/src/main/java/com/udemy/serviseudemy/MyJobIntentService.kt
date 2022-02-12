@@ -1,18 +1,9 @@
 package com.udemy.serviseudemy
 
-import android.app.IntentService
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.Service
 import android.content.Context
 import android.content.Intent
-import android.content.IntentSender
-import android.os.Build
-import android.os.IBinder
 import android.util.Log
 import androidx.core.app.JobIntentService
-import androidx.core.app.NotificationCompat
-import kotlinx.coroutines.*
 
 class MyJobIntentService: JobIntentService() {
 
@@ -42,7 +33,6 @@ class MyJobIntentService: JobIntentService() {
     companion object {
         private const val PAGE = "page"
         private const val JOB_ID = 111
-
 
         fun enqueue(context: Context, pageNumber: Int) {
             enqueueWork(
